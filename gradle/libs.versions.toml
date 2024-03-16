@@ -5,7 +5,7 @@ coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
+lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.7.0"
 composeBom = "2023.08.00"
 googleServices = "4.4.1"
@@ -16,6 +16,7 @@ hiltNavigationCompose = "1.2.0"
 hiltCompiler = "1.0.0"
 hiltAndroidGradlePlugin = "2.51"
 coroutines = "1.7.3"
+lifecycle = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +45,7 @@ hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleRuntimeKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
