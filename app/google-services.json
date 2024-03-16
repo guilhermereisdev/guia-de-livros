@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605824847300",
+    "project_id": "guia-de-livros",
+    "storage_bucket": "guia-de-livros.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605824847300:android:74d2b3db93fa4d7b602891",
+        "android_client_info": {
+          "package_name": "com.guilhermereisapps.guiadelivros"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKLgEtAsXJn-BDInOLW2HIjS03F7dFn8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
