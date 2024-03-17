@@ -28,9 +28,9 @@ fun ReaderNavigation() {
         composable(ReaderScreens.ReaderLoginScreen.name) {
             ReaderLoginScreen(navController)
         }
-        composable(ReaderScreens.ReaderCreateAccountScreen.name) {
+//        composable(ReaderScreens.ReaderCreateAccountScreen.name) {
 //            ReaderCreateAccount(navController)
-        }
+//        }
         composable(ReaderScreens.ReaderSearchScreen.name) {
             ReaderSearchScreen(navController)
         }
