@@ -66,7 +66,6 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.lifecycle.viewmodel)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android.gradle.plugin)
     kapt(libs.hilt.android.compiler)
