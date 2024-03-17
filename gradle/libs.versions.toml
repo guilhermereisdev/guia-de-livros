@@ -16,7 +16,6 @@ hiltNavigationCompose = "1.2.0"
 hiltCompiler = "1.0.0"
 hiltAndroidGradlePlugin = "2.51"
 coroutines = "1.7.3"
-lifecycle = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
