@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.guilhermereisapps.guiadelivros.components.ReaderLogo
 import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 import kotlinx.coroutines.delay
 
@@ -59,11 +60,7 @@ fun ReaderSplashScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Guia de Livros",
-                style = MaterialTheme.typography.displayMedium,
-                color = Color.Red,
-            )
+            ReaderLogo()
             Text(
                 text = "Acompanhe sua leitura",
                 style = MaterialTheme.typography.headlineSmall,
