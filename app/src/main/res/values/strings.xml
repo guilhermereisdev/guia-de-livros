@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Guia de Livros</string>
+
+    <string name="login_account_label">Entrar com sua conta</string>
+    <string name="login_account_description">Digite seu e-mail e senha para acessar o aplicativo</string>
+
+    <string name="create_account_label">Criar uma nova conta</string>
+    <string name="create_account_description">Digite seu e-mail e crie uma senha para acessar o aplicativo</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -73,8 +74,10 @@ fun PasswordInput(
         imeAction = imeAction,
         visualTransformation = visualTransformation,
         trailingIcon = {
-            IconButton(onClick = { passwordVisibility.value = !passwordVisibility.value }) {
-                Icons.Default.Close
+            IconButton(
+                onClick = { passwordVisibility.value = !passwordVisibility.value },
+            ) {
+                Icon(Icons.Default.Close, contentDescription = null, tint = Color.Black)
             }
         },
         onAction = onAction,
