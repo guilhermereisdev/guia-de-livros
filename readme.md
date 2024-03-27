@@ -7,5 +7,10 @@ Autor: Guilherme Reis - [LinkedIn](https://www.linkedin.com/in/guilhermereisdev/
 ### Recursos do app
 
 - Login e criação de conta pelo Firebase.
+- 
+### Técnicas utilizadas
+
+- Jetpack Compose
+- Firebase Auth para gerenciar a criação e o login de usuários.
 
 Em desenvolvimento.
