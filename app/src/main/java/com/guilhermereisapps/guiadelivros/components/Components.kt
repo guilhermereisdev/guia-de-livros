@@ -13,6 +13,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -20,9 +21,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@Preview
 @Composable
 fun ReaderLogo(modifier: Modifier = Modifier) {
     Text(
@@ -33,10 +36,11 @@ fun ReaderLogo(modifier: Modifier = Modifier) {
     )
 }
 
+@Preview
 @Composable
 fun EmailInput(
     modifier: Modifier = Modifier,
-    emailState: MutableState<String>,
+    emailState: MutableState<String> = mutableStateOf(""),
     labelId: String = "Email",
     enabled: Boolean = true,
     imeAction: ImeAction = ImeAction.Next,
@@ -53,13 +57,14 @@ fun EmailInput(
     )
 }
 
+@Preview
 @Composable
 fun PasswordInput(
-    modifier: Modifier,
-    passwordState: MutableState<String>,
-    labelId: String,
-    enabled: Boolean,
-    passwordVisibility: MutableState<Boolean>,
+    modifier: Modifier = Modifier,
+    passwordState: MutableState<String> = mutableStateOf(""),
+    labelId: String = "Senha",
+    enabled: Boolean = true,
+    passwordVisibility: MutableState<Boolean> = mutableStateOf(false),
     imeAction: ImeAction = ImeAction.Done,
     onAction: KeyboardActions = KeyboardActions.Default,
 ) {
