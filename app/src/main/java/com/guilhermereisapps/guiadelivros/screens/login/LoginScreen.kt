@@ -63,7 +63,9 @@ fun LoginScreen(
                     }
                 } else {
                     UserForm(loading = false, isCreateAccount = true) { email, password ->
-                        // TODO: Criar a conta no Firebase
+                        viewModel.createUserWithEmailAndPassword(email, password) {
+                            navController.navigate(ReaderScreens.HomeScreen.name)
+                        }
                     }
                 }
             }
@@ -97,7 +99,7 @@ fun LoginScreen(
 fun UserForm(
     loading: Boolean = false,
     isCreateAccount: Boolean = false,
-    onDone: (String, String) -> Unit = { email, password -> }
+    onDone: (String, String) -> Unit = { _, _ -> }
 ) {
     val email = rememberSaveable { mutableStateOf("") }
     val password = rememberSaveable { mutableStateOf("") }

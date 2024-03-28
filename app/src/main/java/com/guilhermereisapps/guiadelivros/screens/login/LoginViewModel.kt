@@ -41,7 +41,22 @@ class LoginViewModel : ViewModel() {
             }
         }
 
-    fun createUserWithEmailAndPassword() {
-
+    fun createUserWithEmailAndPassword(
+        email: String,
+        password: String,
+        navigateToHomeScreen: () -> Unit,
+    ) {
+        if (_loading.value == false) {
+            _loading.value = true
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        navigateToHomeScreen()
+                    } else {
+                        Log.d("GuiaDeLivros", "createUserWithEmailAndPassword: ${task.result}")
+                    }
+                }
+            _loading.value = false
+        }
     }
 }
