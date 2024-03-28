@@ -1,20 +1,14 @@
 package com.guilhermereisapps.guiadelivros.screens.login
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,12 +28,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.guilhermereisapps.guiadelivros.R
 import com.guilhermereisapps.guiadelivros.components.EmailInput
 import com.guilhermereisapps.guiadelivros.components.PasswordInput
 import com.guilhermereisapps.guiadelivros.components.ReaderLogo
 import com.guilhermereisapps.guiadelivros.components.SubmitButton
+import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 
 @Preview
 @Composable
@@ -61,8 +57,9 @@ fun LoginScreen(
                 ReaderLogo()
                 if (showLoginForm.value) {
                     UserForm { email, password ->
-                        Log.d("Form", "ReaderLoginScreen: $email $password")
-                        // TODO: Fazer o Login no Firebase
+                        viewModel.signInWithEmailAndPassword(email, password) {
+                            navController.navigate(ReaderScreens.HomeScreen.name)
+                        }
                     }
                 } else {
                     UserForm(loading = false, isCreateAccount = true) { email, password ->
