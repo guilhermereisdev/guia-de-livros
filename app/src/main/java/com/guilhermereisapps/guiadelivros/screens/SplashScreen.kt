@@ -43,7 +43,7 @@ fun ReaderSplashScreen(navController: NavController) {
             )
         )
         delay(2000L)
-        navController.navigate(ReaderScreens.ReaderLoginScreen.name)
+        navController.navigate(ReaderScreens.LoginScreen.name)
     }
 
     Surface(

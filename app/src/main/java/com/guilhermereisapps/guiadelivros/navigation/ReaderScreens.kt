@@ -1,27 +1,27 @@
 package com.guilhermereisapps.guiadelivros.navigation
 
 enum class ReaderScreens {
-    ReaderSplashScreen,
-    ReaderLoginScreen,
-    ReaderCreateAccountScreen,
-    ReaderHomeScreen,
-    ReaderSearchScreen,
-    ReaderDetailsScreen,
-    ReaderUpdateScreen,
-    ReaderStatsScreen;
+    SplashScreen,
+    LoginScreen,
+    CreateAccountScreen,
+    HomeScreen,
+    SearchScreen,
+    DetailsScreen,
+    UpdateScreen,
+    StatsScreen;
 
     companion object {
         fun fromRoute(route: String?): ReaderScreens =
             when (route?.substringBefore("/")) {
-                ReaderSplashScreen.name -> ReaderSplashScreen
-                ReaderLoginScreen.name -> ReaderLoginScreen
-                ReaderCreateAccountScreen.name -> ReaderCreateAccountScreen
-                ReaderHomeScreen.name -> ReaderHomeScreen
-                ReaderSearchScreen.name -> ReaderSearchScreen
-                ReaderDetailsScreen.name -> ReaderDetailsScreen
-                ReaderUpdateScreen.name -> ReaderUpdateScreen
-                ReaderStatsScreen.name -> ReaderStatsScreen
-                null -> ReaderHomeScreen
+                SplashScreen.name -> SplashScreen
+                LoginScreen.name -> LoginScreen
+                CreateAccountScreen.name -> CreateAccountScreen
+                HomeScreen.name -> HomeScreen
+                SearchScreen.name -> SearchScreen
+                DetailsScreen.name -> DetailsScreen
+                UpdateScreen.name -> UpdateScreen
+                StatsScreen.name -> StatsScreen
+                null -> HomeScreen
                 else -> throw IllegalArgumentException("Rota $route não é reconhecida.")
             }
     }

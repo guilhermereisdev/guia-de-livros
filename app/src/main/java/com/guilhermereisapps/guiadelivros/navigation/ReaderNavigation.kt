@@ -17,30 +17,30 @@ fun ReaderNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ReaderScreens.ReaderSplashScreen.name
+        startDestination = ReaderScreens.SplashScreen.name
     ) {
-        composable(ReaderScreens.ReaderSplashScreen.name) {
+        composable(ReaderScreens.SplashScreen.name) {
             ReaderSplashScreen(navController)
         }
-        composable(ReaderScreens.ReaderHomeScreen.name) {
+        composable(ReaderScreens.HomeScreen.name) {
             ReaderHomeScreen(navController)
         }
-        composable(ReaderScreens.ReaderLoginScreen.name) {
+        composable(ReaderScreens.LoginScreen.name) {
             ReaderLoginScreen(navController)
         }
 //        composable(ReaderScreens.ReaderCreateAccountScreen.name) {
 //            ReaderCreateAccount(navController)
 //        }
-        composable(ReaderScreens.ReaderSearchScreen.name) {
+        composable(ReaderScreens.SearchScreen.name) {
             ReaderSearchScreen(navController)
         }
-        composable(ReaderScreens.ReaderDetailsScreen.name) {
+        composable(ReaderScreens.DetailsScreen.name) {
             ReaderDetailsScreen(navController)
         }
-        composable(ReaderScreens.ReaderUpdateScreen.name) {
+        composable(ReaderScreens.UpdateScreen.name) {
             ReaderUpdateScreen(navController)
         }
-        composable(ReaderScreens.ReaderStatsScreen.name) {
+        composable(ReaderScreens.StatsScreen.name) {
             ReaderStatsScreen(navController)
         }
     }
