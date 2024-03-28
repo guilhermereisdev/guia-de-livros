@@ -43,7 +43,10 @@ import com.guilhermereisapps.guiadelivros.components.SubmitButton
 
 @Preview
 @Composable
-fun ReaderLoginScreen(navController: NavController = NavController(LocalContext.current)) {
+fun LoginScreen(
+    navController: NavController = NavController(LocalContext.current),
+    viewModel: LoginViewModel = viewModel(),
+) {
     val showLoginForm = rememberSaveable { mutableStateOf(true) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
