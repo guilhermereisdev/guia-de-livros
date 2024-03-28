@@ -139,7 +139,6 @@ fun UserForm(
         PasswordInput(
             modifier = Modifier.focusRequester(passwordFocusRequest),
             passwordState = password,
-            labelId = "Senha",
             enabled = !loading,
             passwordVisibility = passwordVisibility,
             onAction = KeyboardActions {
