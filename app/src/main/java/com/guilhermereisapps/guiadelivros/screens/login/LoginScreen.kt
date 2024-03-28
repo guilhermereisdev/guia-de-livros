@@ -39,6 +39,7 @@ import com.guilhermereisapps.guiadelivros.R
 import com.guilhermereisapps.guiadelivros.components.EmailInput
 import com.guilhermereisapps.guiadelivros.components.PasswordInput
 import com.guilhermereisapps.guiadelivros.components.ReaderLogo
+import com.guilhermereisapps.guiadelivros.components.SubmitButton
 
 @Preview
 @Composable
@@ -148,6 +149,8 @@ fun UserForm(
             },
         )
         SubmitButton(
+            modifier = Modifier
+                .padding(top = 16.dp, start = 32.dp, end = 32.dp),
             textId = if (isCreateAccount) "Criar Conta" else "Entrar",
             loading = loading,
             validInputs = valid,
@@ -155,20 +158,5 @@ fun UserForm(
             onDone(email.value.trim(), password.value.trim())
             keyboardController?.hide()
         }
-    }
-}
-
-@Composable
-fun SubmitButton(textId: String, loading: Boolean, validInputs: Boolean, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .padding(top = 16.dp, start = 32.dp, end = 32.dp)
-            .fillMaxWidth(),
-        enabled = !loading && validInputs,
-        shape = CircleShape
-    ) {
-        if (loading) CircularProgressIndicator(modifier = Modifier.size(25.dp))
-        else Text(text = textId, modifier = Modifier.padding(5.dp))
     }
 }
