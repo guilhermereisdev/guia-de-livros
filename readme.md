@@ -7,7 +7,8 @@ Autor: Guilherme Reis - [LinkedIn](https://www.linkedin.com/in/guilhermereisdev/
 ### Recursos do app
 
 - Login e criação de conta pelo Firebase.
-- 
+- Busca pelos livros na API do Google.
+
 ### Técnicas utilizadas
 
 - Jetpack Compose

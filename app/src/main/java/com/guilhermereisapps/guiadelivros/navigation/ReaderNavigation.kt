@@ -4,44 +4,44 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.guilhermereisapps.guiadelivros.screens.ReaderSplashScreen
-import com.guilhermereisapps.guiadelivros.screens.details.ReaderDetailsScreen
-import com.guilhermereisapps.guiadelivros.screens.home.ReaderHomeScreen
-import com.guilhermereisapps.guiadelivros.screens.login.ReaderLoginScreen
-import com.guilhermereisapps.guiadelivros.screens.search.ReaderSearchScreen
-import com.guilhermereisapps.guiadelivros.screens.stats.ReaderStatsScreen
-import com.guilhermereisapps.guiadelivros.screens.update.ReaderUpdateScreen
+import com.guilhermereisapps.guiadelivros.screens.SplashScreen
+import com.guilhermereisapps.guiadelivros.screens.details.DetailsScreen
+import com.guilhermereisapps.guiadelivros.screens.home.HomeScreen
+import com.guilhermereisapps.guiadelivros.screens.login.LoginScreen
+import com.guilhermereisapps.guiadelivros.screens.search.SearchScreen
+import com.guilhermereisapps.guiadelivros.screens.stats.StatsScreen
+import com.guilhermereisapps.guiadelivros.screens.update.UpdateScreen
 
 @Composable
 fun ReaderNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ReaderScreens.ReaderSplashScreen.name
+        startDestination = ReaderScreens.SplashScreen.name
     ) {
-        composable(ReaderScreens.ReaderSplashScreen.name) {
-            ReaderSplashScreen(navController)
+        composable(ReaderScreens.SplashScreen.name) {
+            SplashScreen(navController)
         }
-        composable(ReaderScreens.ReaderHomeScreen.name) {
-            ReaderHomeScreen(navController)
+        composable(ReaderScreens.HomeScreen.name) {
+            HomeScreen(navController)
         }
-        composable(ReaderScreens.ReaderLoginScreen.name) {
-            ReaderLoginScreen(navController)
+        composable(ReaderScreens.LoginScreen.name) {
+            LoginScreen(navController)
         }
 //        composable(ReaderScreens.ReaderCreateAccountScreen.name) {
 //            ReaderCreateAccount(navController)
 //        }
-        composable(ReaderScreens.ReaderSearchScreen.name) {
-            ReaderSearchScreen(navController)
+        composable(ReaderScreens.SearchScreen.name) {
+            SearchScreen(navController)
         }
-        composable(ReaderScreens.ReaderDetailsScreen.name) {
-            ReaderDetailsScreen(navController)
+        composable(ReaderScreens.DetailsScreen.name) {
+            DetailsScreen(navController)
         }
-        composable(ReaderScreens.ReaderUpdateScreen.name) {
-            ReaderUpdateScreen(navController)
+        composable(ReaderScreens.UpdateScreen.name) {
+            UpdateScreen(navController)
         }
-        composable(ReaderScreens.ReaderStatsScreen.name) {
-            ReaderStatsScreen(navController)
+        composable(ReaderScreens.StatsScreen.name) {
+            StatsScreen(navController)
         }
     }
 }

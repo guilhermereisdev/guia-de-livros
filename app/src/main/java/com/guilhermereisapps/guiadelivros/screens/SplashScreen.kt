@@ -26,7 +26,7 @@ import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 import kotlinx.coroutines.delay
 
 @Composable
-fun ReaderSplashScreen(navController: NavController) {
+fun SplashScreen(navController: NavController) {
 
     val scale = remember {
         Animatable(0f)
@@ -43,7 +43,7 @@ fun ReaderSplashScreen(navController: NavController) {
             )
         )
         delay(2000L)
-        navController.navigate(ReaderScreens.ReaderLoginScreen.name)
+        navController.navigate(ReaderScreens.LoginScreen.name)
     }
 
     Surface(

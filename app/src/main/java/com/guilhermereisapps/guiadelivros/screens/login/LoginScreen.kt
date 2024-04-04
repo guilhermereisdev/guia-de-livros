@@ -1,20 +1,14 @@
 package com.guilhermereisapps.guiadelivros.screens.login
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,15 +28,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.guilhermereisapps.guiadelivros.R
 import com.guilhermereisapps.guiadelivros.components.EmailInput
 import com.guilhermereisapps.guiadelivros.components.PasswordInput
 import com.guilhermereisapps.guiadelivros.components.ReaderLogo
+import com.guilhermereisapps.guiadelivros.components.SubmitButton
+import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 
 @Preview
 @Composable
-fun ReaderLoginScreen(navController: NavController = NavController(LocalContext.current)) {
+fun LoginScreen(
+    navController: NavController = NavController(LocalContext.current),
+    viewModel: LoginViewModel = viewModel(),
+) {
     val showLoginForm = rememberSaveable { mutableStateOf(true) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
@@ -57,12 +57,15 @@ fun ReaderLoginScreen(navController: NavController = NavController(LocalContext.
                 ReaderLogo()
                 if (showLoginForm.value) {
                     UserForm { email, password ->
-                        Log.d("Form", "ReaderLoginScreen: $email $password")
-                        // TODO: Fazer o Login no Firebase
+                        viewModel.signInWithEmailAndPassword(email, password) {
+                            navController.navigate(ReaderScreens.HomeScreen.name)
+                        }
                     }
                 } else {
                     UserForm(loading = false, isCreateAccount = true) { email, password ->
-                        // TODO: Criar a conta no Firebase
+                        viewModel.createUserWithEmailAndPassword(email, password) {
+                            navController.navigate(ReaderScreens.HomeScreen.name)
+                        }
                     }
                 }
             }
@@ -96,7 +99,7 @@ fun ReaderLoginScreen(navController: NavController = NavController(LocalContext.
 fun UserForm(
     loading: Boolean = false,
     isCreateAccount: Boolean = false,
-    onDone: (String, String) -> Unit = { email, password -> }
+    onDone: (String, String) -> Unit = { _, _ -> }
 ) {
     val email = rememberSaveable { mutableStateOf("") }
     val password = rememberSaveable { mutableStateOf("") }
@@ -139,7 +142,6 @@ fun UserForm(
         PasswordInput(
             modifier = Modifier.focusRequester(passwordFocusRequest),
             passwordState = password,
-            labelId = "Senha",
             enabled = !loading,
             passwordVisibility = passwordVisibility,
             onAction = KeyboardActions {
@@ -149,6 +151,8 @@ fun UserForm(
             },
         )
         SubmitButton(
+            modifier = Modifier
+                .padding(top = 16.dp, start = 32.dp, end = 32.dp),
             textId = if (isCreateAccount) "Criar Conta" else "Entrar",
             loading = loading,
             validInputs = valid,
@@ -156,20 +160,5 @@ fun UserForm(
             onDone(email.value.trim(), password.value.trim())
             keyboardController?.hide()
         }
-    }
-}
-
-@Composable
-fun SubmitButton(textId: String, loading: Boolean, validInputs: Boolean, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .padding(top = 16.dp, start = 32.dp, end = 32.dp)
-            .fillMaxWidth(),
-        enabled = !loading && validInputs,
-        shape = CircleShape
-    ) {
-        if (loading) CircularProgressIndicator(modifier = Modifier.size(25.dp))
-        else Text(text = textId, modifier = Modifier.padding(5.dp))
     }
 }
