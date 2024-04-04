@@ -72,7 +72,8 @@ class LoginViewModel : ViewModel() {
 
         FirebaseFirestore.getInstance()
             .collection("users")
-            .document(userId)
-            .set(user)
+//            .document(userId)
+//            .set(user)
+            .add(user)
     }
 }
