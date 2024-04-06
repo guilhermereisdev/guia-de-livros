@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.guilhermereisapps.guiadelivros.screens.SplashScreen
+import com.guilhermereisapps.guiadelivros.screens.splash.SplashScreen
 import com.guilhermereisapps.guiadelivros.screens.details.DetailsScreen
 import com.guilhermereisapps.guiadelivros.screens.home.HomeScreen
 import com.guilhermereisapps.guiadelivros.screens.login.LoginScreen
