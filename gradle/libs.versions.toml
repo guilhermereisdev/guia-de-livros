@@ -7,7 +7,7 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.7.0"
-composeBom = "2023.08.00"
+composeBom = "2024.04.00"
 googleServices = "4.4.1"
 firebaseBom = "32.7.4"
 hilt = "2.49"
@@ -15,6 +15,7 @@ hiltNavigationCompose = "1.2.0"
 hiltCompiler = "1.0.0"
 hiltAndroidGradlePlugin = "2.51"
 coroutines = "1.7.3"
+composeIconsExtended = "1.6.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleRuntimeKtx" }
+androidx-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "composeIconsExtended" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
