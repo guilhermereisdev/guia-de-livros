@@ -95,30 +95,19 @@ fun AppBar(
                 Icon(imageVector = Icons.Filled.MoreVert, contentDescription = "Menu")
             }
             DropdownMenu(expanded = showMenu.value, onDismissRequest = { showMenu.value = false }) {
-                DropdownMenuItem(
-                    text = {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = "Minha conta")
-                        }
-                    },
-                    onClick = { showMenu.value = false },
-                )
-                DropdownMenuItem(
-                    text = {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = "Sair")
-                        }
-                    },
-                    onClick = {
-                        showMenu.value = false
-                        FirebaseAuth.getInstance().signOut().run {
-                            navController.navigate(ReaderScreens.LoginScreen.name)
-                        }
-                    },
-                )
+                MenuItem(text = "Minha conta", showMenu = showMenu)
+                MenuItem(text = "Estatísticas", showMenu = showMenu) {
+                    navController.navigate(ReaderScreens.StatsScreen.name)
+                }
+                MenuItem(text = "Sair", showMenu = showMenu) {
+                    FirebaseAuth.getInstance().signOut().run {
+                        navController.navigate(ReaderScreens.LoginScreen.name)
+                    }
+                }
             }
         },
     )
+}
 }
 
 @Composable
