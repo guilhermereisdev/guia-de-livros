@@ -1,6 +1,6 @@
 # Guia de Livros
 
-Um app onde o usuário pesquisa por livros na API do Google e marca os já lidos.
+Um app para controlar livros lidos.
 
 Autor: Guilherme Reis - [LinkedIn](https://www.linkedin.com/in/guilhermereisdev/)
 
