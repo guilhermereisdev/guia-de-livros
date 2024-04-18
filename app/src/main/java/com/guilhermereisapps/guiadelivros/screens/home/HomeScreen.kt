@@ -1,18 +1,22 @@
 package com.guilhermereisapps.guiadelivros.screens.home
 
+import android.widget.HorizontalScrollView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -41,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -131,11 +136,58 @@ fun AppBar(
 
 @Composable
 fun HomeContent(navController: NavController) {
-    Column(verticalArrangement = Arrangement.Top) {
-        Row(modifier = Modifier.align(Alignment.Start)) {
-            TitleSection(label = "Sua atividade de leitura no momento:")
+    val listOfBooks = listOf<Book>(
+        Book("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
+        Book("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
+        Book("03", "O Código da Vinci", "Dan Brown", "Enigmas"),
+        Book("04", "Harry Potter e o Prisioneiro de Azkaban", "Aquela lá", "Menino bruxo"),
+        Book("05", "Harry Potter e o Enigma do Príncipe", "Aquela lá", "Menino bruxo"),
+        Book("06", "Harry Potter e as Relíquias da Morte", "Aquela lá", "Menino bruxo"),
+    )
+
+    Column(
+        verticalArrangement = Arrangement.Top
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Start)
+        ) {
+            TitleSection(label = "Livros sendo lidos no momento:")
         }
-        ListCard()
+        ReadingRightNowArea(books = listOf(), navController = navController)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Start)
+        ) {
+            TitleSection(label = "Minha biblioteca:")
+        }
+        BookListArea(listOfBooks = listOfBooks, navController = navController)
+    }
+}
+
+@Composable
+fun BookListArea(listOfBooks: List<Book>, navController: NavController) {
+    HorizontalScrollableComponent(listOfBooks) {
+        //TODO: ao clicar no card, irá para a tela de detalhes do livro
+    }
+}
+
+@Composable
+fun HorizontalScrollableComponent(listOfBooks: List<Book>, onCardPressed: (String) -> Unit) {
+    val scrollState = rememberScrollState()
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(280.dp)
+            .horizontalScroll(scrollState)
+    ) {
+        for (book in listOfBooks) {
+            ListCard(book) {
+                onCardPressed(it)
+            }
+        }
     }
 }
 
@@ -146,7 +198,7 @@ fun TitleSection(modifier: Modifier = Modifier, label: String) {
 
 @Composable
 fun ReadingRightNowArea(books: List<Book>, navController: NavController) {
-
+    ListCard()
 }
 
 @Preview
@@ -163,32 +215,36 @@ fun ListCard(
 
     Card(
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(contentColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = Color.LightGray),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         modifier = Modifier
             .padding(4.dp)
-            .height(200.dp)
+            .height(150.dp)
             .width(300.dp)
             .clickable { onPressDetails.invoke(book.title.toString()) }
     ) {
-        Column(
-            modifier = Modifier.width(screenWidth.dp - (spacing * 2)),
+        Row(
+//            modifier = Modifier.width(screenWidth.dp - (spacing * 2)),
 //            horizontalAlignment = Alignment.Start,
         ) {
-            Row(horizontalArrangement = Arrangement.Center) {
-                Image(
-                    painter = rememberAsyncImagePainter("http://books.google.com/books/content?id=aGMfCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"),
-                    contentDescription = "Book Cover",
-                    modifier = Modifier
-                        .height(140.dp)
-                        .width(100.dp)
-                        .padding(4.dp)
-                )
-                Spacer(modifier = Modifier.width(50.dp))
+            Image(
+                painter = rememberAsyncImagePainter("http://books.google.com/books/content?id=aGMfCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"),
+                contentDescription = "Book Cover",
+                modifier = Modifier
+                    .height(150.dp)
+                    .width(100.dp),
+                colorFilter = ColorFilter.tint(Color.Black)
+            )
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxHeight()
+            ) {
                 Column(
-                    modifier = Modifier.padding(top = 25.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.End,
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.FavoriteBorder,
@@ -197,25 +253,26 @@ fun ListCard(
                     )
                     BookRating(score = 3.5)
                 }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.Start,
+                ) {
+                    Text(
+                        text = book.title.toString(),
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Text(
+                        text = book.authors.toString(),
+                    )
+                }
             }
-            Text(
-                text = book.title.toString(),
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                text = book.authors.toString(),
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-            )
-        }
-        Row(
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.Bottom,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            RoundedButton(label = "Reading", radius = 0)
+
+
         }
     }
 }
@@ -224,16 +281,15 @@ fun ListCard(
 fun BookRating(score: Double = 4.5) {
     Surface(
         modifier = Modifier
-            .height(70.dp)
             .padding(4.dp),
         shape = RoundedCornerShape(50.dp),
         tonalElevation = 6.dp,
         color = Color.White,
     ) {
-        Column(
-            modifier = Modifier.padding(4.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Row(
+            modifier = Modifier.padding(start = 4.dp, top = 4.dp, bottom = 4.dp, end = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 imageVector = Icons.Filled.StarBorder, contentDescription = "Star",
@@ -244,9 +300,8 @@ fun BookRating(score: Double = 4.5) {
     }
 }
 
-@Preview
 @Composable
-fun RoundedButton(
+fun StatusLabel(
     label: String = "Reading",
     radius: Int = 29,
     onPress: () -> Unit = {}
