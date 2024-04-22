@@ -176,7 +176,6 @@ fun ListCard(
                 modifier = Modifier
                     .height(150.dp)
                     .width(100.dp),
-                colorFilter = ColorFilter.tint(Color.Black)
             )
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
