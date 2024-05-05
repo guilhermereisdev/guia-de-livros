@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.guilhermereisapps.guiadelivros.components.AppBar
 import com.guilhermereisapps.guiadelivros.components.InputField
 import com.guilhermereisapps.guiadelivros.components.SingleBookCard
-import com.guilhermereisapps.guiadelivros.model.Book
+import com.guilhermereisapps.guiadelivros.model.ReaderBook
 
 @Preview
 @Composable
@@ -59,13 +59,13 @@ fun SearchScreen(navController: NavController = rememberNavController()) {
 
 @Composable
 fun BookList(navController: NavController) {
-    val listOfBooks = listOf<Book>(
-        Book("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
-        Book("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
-        Book("03", "O Código da Vinci", "Dan Brown", "Enigmas"),
-        Book("04", "Harry Potter e o Prisioneiro de Azkaban", "Aquela lá", "Menino bruxo"),
-        Book("05", "Harry Potter e o Enigma do Príncipe", "Aquela lá", "Menino bruxo"),
-        Book("06", "Harry Potter e as Relíquias da Morte", "Aquela lá", "Menino bruxo"),
+    val listOfBooks = listOf<ReaderBook>(
+        ReaderBook("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
+        ReaderBook("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
+        ReaderBook("03", "O Código da Vinci", "Dan Brown", "Enigmas"),
+        ReaderBook("04", "Harry Potter e o Prisioneiro de Azkaban", "Aquela lá", "Menino bruxo"),
+        ReaderBook("05", "Harry Potter e o Enigma do Príncipe", "Aquela lá", "Menino bruxo"),
+        ReaderBook("06", "Harry Potter e as Relíquias da Morte", "Aquela lá", "Menino bruxo"),
     )
     LazyColumn(
         modifier = Modifier.fillMaxSize(),

@@ -33,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -43,7 +42,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.guilhermereisapps.guiadelivros.components.AppBar
-import com.guilhermereisapps.guiadelivros.model.Book
+import com.guilhermereisapps.guiadelivros.model.ReaderBook
 import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 import com.guilhermereisapps.guiadelivros.ui.theme.GuiaDeLivrosTheme
 
@@ -79,13 +78,13 @@ fun HomeScreen(navController: NavController = rememberNavController()) {
 
 @Composable
 fun HomeContent(navController: NavController) {
-    val listOfBooks = listOf<Book>(
-        Book("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
-        Book("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
-        Book("03", "O Código da Vinci", "Dan Brown", "Enigmas"),
-        Book("04", "Harry Potter e o Prisioneiro de Azkaban", "Aquela lá", "Menino bruxo"),
-        Book("05", "Harry Potter e o Enigma do Príncipe", "Aquela lá", "Menino bruxo"),
-        Book("06", "Harry Potter e as Relíquias da Morte", "Aquela lá", "Menino bruxo"),
+    val listOfBooks = listOf<ReaderBook>(
+        ReaderBook("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
+        ReaderBook("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
+        ReaderBook("03", "O Código da Vinci", "Dan Brown", "Enigmas"),
+        ReaderBook("04", "Harry Potter e o Prisioneiro de Azkaban", "Aquela lá", "Menino bruxo"),
+        ReaderBook("05", "Harry Potter e o Enigma do Príncipe", "Aquela lá", "Menino bruxo"),
+        ReaderBook("06", "Harry Potter e as Relíquias da Morte", "Aquela lá", "Menino bruxo"),
     )
 
     Column(
@@ -111,14 +110,14 @@ fun HomeContent(navController: NavController) {
 }
 
 @Composable
-fun BookListArea(listOfBooks: List<Book>, navController: NavController) {
+fun BookListArea(listOfBooks: List<ReaderBook>, navController: NavController) {
     HorizontalScrollableComponent(listOfBooks) {
         //TODO: ao clicar no card, irá para a tela de detalhes do livro
     }
 }
 
 @Composable
-fun HorizontalScrollableComponent(listOfBooks: List<Book>, onCardPressed: (String) -> Unit) {
+fun HorizontalScrollableComponent(listOfBooks: List<ReaderBook>, onCardPressed: (String) -> Unit) {
     val scrollState = rememberScrollState()
     Row(
         modifier = Modifier
@@ -140,14 +139,14 @@ fun TitleSection(modifier: Modifier = Modifier, label: String) {
 }
 
 @Composable
-fun ReadingRightNowArea(books: List<Book>, navController: NavController) {
+fun ReadingRightNowArea(books: List<ReaderBook>, navController: NavController) {
     ListCard()
 }
 
 @Preview
 @Composable
 fun ListCard(
-    book: Book = Book("01", "O Código DaVinci", "Dan Brown", "The Best Book"),
+    book: ReaderBook = ReaderBook("01", "O Código DaVinci", "Dan Brown", "The Best Book"),
     onPressDetails: (String) -> Unit = {},
 ) {
     val context = LocalContext.current

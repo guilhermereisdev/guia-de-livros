@@ -58,7 +58,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.google.firebase.auth.FirebaseAuth
-import com.guilhermereisapps.guiadelivros.model.Book
+import com.guilhermereisapps.guiadelivros.model.ReaderBook
 import com.guilhermereisapps.guiadelivros.navigation.ReaderScreens
 
 @Preview
@@ -254,8 +254,8 @@ fun AppBar(
 @Preview
 @Composable
 fun SingleBookCard(
-    book: Book =
-        Book("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
+    book: ReaderBook =
+        ReaderBook("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
     navController: NavController = rememberNavController(),
     imageUrl: String =
         "http://books.google.com/books/content?id=aGMfCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
