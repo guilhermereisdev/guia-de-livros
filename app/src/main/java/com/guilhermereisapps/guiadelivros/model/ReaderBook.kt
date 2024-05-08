@@ -1,6 +1,6 @@
 package com.guilhermereisapps.guiadelivros.model
 
-data class Book(
+data class ReaderBook(
     var id: String? = null,
     var title: String? = null,
     var authors: String? = null,
