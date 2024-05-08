@@ -18,18 +18,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.guilhermereisapps.guiadelivros.components.AppBar
 import com.guilhermereisapps.guiadelivros.components.InputField
 import com.guilhermereisapps.guiadelivros.components.SingleBookCard
 import com.guilhermereisapps.guiadelivros.model.ReaderBook
 
-@Preview
 @Composable
-fun SearchScreen(navController: NavController = rememberNavController()) {
+fun SearchScreen(
+    navController: NavController,
+    viewModel: SearchViewModel = viewModel(),
+) {
     Scaffold(topBar = {
         AppBar(
             title = "Search Screen",
@@ -49,16 +50,19 @@ fun SearchScreen(navController: NavController = rememberNavController()) {
                 SearchForm(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
-                )
-                BookList(navController)
+                        .padding(16.dp),
+                    viewModel = viewModel,
+                ) { query ->
+                    viewModel.searchBooks(query)
+                }
+                BookList(navController, viewModel)
             }
         }
     }
 }
 
 @Composable
-fun BookList(navController: NavController) {
+fun BookList(navController: NavController, viewModel: SearchViewModel) {
     val listOfBooks = listOf<ReaderBook>(
         ReaderBook("01", "Harry Potter e a Pedra Filosofal", "Aquela lá", "Menino bruxo"),
         ReaderBook("02", "Senhor dos Anéis", "Tolkien", "Esconde o anel"),
@@ -76,10 +80,10 @@ fun BookList(navController: NavController) {
     }
 }
 
-@Preview
 @Composable
 fun SearchForm(
     modifier: Modifier = Modifier,
+    viewModel: SearchViewModel,
     loading: Boolean = false,
     hint: String = "Search",
     onSearch: (String) -> Unit = {}

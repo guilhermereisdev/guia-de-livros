@@ -1,6 +1,7 @@
 package com.guilhermereisapps.guiadelivros.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -9,6 +10,7 @@ import com.guilhermereisapps.guiadelivros.screens.details.DetailsScreen
 import com.guilhermereisapps.guiadelivros.screens.home.HomeScreen
 import com.guilhermereisapps.guiadelivros.screens.login.LoginScreen
 import com.guilhermereisapps.guiadelivros.screens.search.SearchScreen
+import com.guilhermereisapps.guiadelivros.screens.search.SearchViewModel
 import com.guilhermereisapps.guiadelivros.screens.stats.StatsScreen
 import com.guilhermereisapps.guiadelivros.screens.update.UpdateScreen
 
@@ -32,7 +34,8 @@ fun ReaderNavigation() {
 //            ReaderCreateAccount(navController)
 //        }
         composable(ReaderScreens.SearchScreen.name) {
-            SearchScreen(navController)
+            val viewModel = hiltViewModel<SearchViewModel>()
+            SearchScreen(navController, viewModel)
         }
         composable(ReaderScreens.DetailsScreen.name) {
             DetailsScreen(navController)
